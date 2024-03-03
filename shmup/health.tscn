@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://0etuwnafk8vp"]
+
+[ext_resource type="Script" path="res://shmup/health.gd" id="1_daq6j"]
+
+[node name="Health" type="Node"]
+script = ExtResource("1_daq6j")

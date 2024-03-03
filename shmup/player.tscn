@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://bu5j5jehn173j"]
+
+[ext_resource type="Script" path="res://shmup/player.gd" id="1_1yd8w"]
+[ext_resource type="Script" path="res://shmup/gun.gd" id="2_qavud"]
+[ext_resource type="PackedScene" uid="uid://cojjhy1gtmjbn" path="res://shmup/player_bullet.tscn" id="3_07016"]
+[ext_resource type="Script" path="res://shmup/health.gd" id="4_4lx14"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cb73h"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a8fkt"]
+width = 8
+height = 8
+noise = SubResource("FastNoiseLite_cb73h")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rk5jt"]
+size = Vector2(8, 8)
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+platform_on_leave = 2
+script = ExtResource("1_1yd8w")
+speed = 100.0
+axis_lock = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("NoiseTexture2D_a8fkt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rk5jt")
+
+[node name="Gun" type="Node2D" parent="."]
+script = ExtResource("2_qavud")
+bullet = ExtResource("3_07016")
+force = 100.0
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("4_4lx14")
+
+[connection signal="body_entered" from="." to="Health" method="_on_body_entered"]
+[connection signal="on_action" from="." to="Gun" method="_on_action"]

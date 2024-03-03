@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dshewc6y1bq54"]
+
+[ext_resource type="PackedScene" uid="uid://bu5j5jehn173j" path="res://shmup/player.tscn" id="1_dlwna"]
+[ext_resource type="PackedScene" uid="uid://dshdj4eghpkih" path="res://shmup/enemy.tscn" id="2_w6l1b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vnscl"]
+size = Vector2(384, 8)
+
+[node name="Shmup" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_dlwna")]
+position = Vector2(64, 92)
+
+[node name="TopBoundary" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBoundary"]
+position = Vector2(192, -4)
+shape = SubResource("RectangleShape2D_vnscl")
+
+[node name="BottomBoundary" type="StaticBody2D" parent="."]
+position = Vector2(0, 216)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomBoundary"]
+position = Vector2(192, 4)
+shape = SubResource("RectangleShape2D_vnscl")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Enemy" parent="." instance=ExtResource("2_w6l1b")]
+position = Vector2(324, 104)
