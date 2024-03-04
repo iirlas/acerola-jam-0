@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://dshdj4eghpkih"]
 
-[ext_resource type="Script" path="res://shmup/player.gd" id="1_61ry7"]
+[ext_resource type="Script" path="res://shmup/enemy.gd" id="1_nbcuy"]
 [ext_resource type="Script" path="res://shmup/gun.gd" id="2_t84n0"]
-[ext_resource type="PackedScene" uid="uid://d0duadmta3dwj" path="res://shmup/enemy_bullet.tscn" id="3_jnj4s"]
+[ext_resource type="PackedScene" uid="uid://cmdtn7qscq5yt" path="res://shmup/bullet.tscn" id="3_w83bg"]
 [ext_resource type="Script" path="res://shmup/health.gd" id="4_v77x6"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_cb73h"]
@@ -20,9 +20,8 @@ collision_layer = 2
 collision_mask = 2
 motion_mode = 1
 platform_on_leave = 2
-script = ExtResource("1_61ry7")
+script = ExtResource("1_nbcuy")
 speed = 100.0
-axis_lock = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("NoiseTexture2D_a8fkt")
@@ -33,11 +32,17 @@ shape = SubResource("RectangleShape2D_rk5jt")
 [node name="Gun" type="Node2D" parent="."]
 rotation = 3.14159
 script = ExtResource("2_t84n0")
-bullet = ExtResource("3_jnj4s")
+bullet = ExtResource("3_w83bg")
 force = 100.0
+collision_layer = 1
+collision_mask = 1
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("4_v77x6")
 
-[connection signal="body_entered" from="." to="Health" method="_on_body_entered"]
+[node name="GunTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="on_action" from="." to="Gun" method="_on_action"]
+[connection signal="on_damage" from="." to="Health" method="damage"]
+[connection signal="timeout" from="GunTimer" to="Gun" method="_on_action"]

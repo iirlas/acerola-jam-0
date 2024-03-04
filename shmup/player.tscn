@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://shmup/player.gd" id="1_1yd8w"]
 [ext_resource type="Script" path="res://shmup/gun.gd" id="2_qavud"]
-[ext_resource type="PackedScene" uid="uid://cojjhy1gtmjbn" path="res://shmup/player_bullet.tscn" id="3_07016"]
+[ext_resource type="PackedScene" uid="uid://cmdtn7qscq5yt" path="res://shmup/bullet.tscn" id="3_4fye7"]
 [ext_resource type="Script" path="res://shmup/health.gd" id="4_4lx14"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_cb73h"]
@@ -30,11 +30,13 @@ shape = SubResource("RectangleShape2D_rk5jt")
 
 [node name="Gun" type="Node2D" parent="."]
 script = ExtResource("2_qavud")
-bullet = ExtResource("3_07016")
+bullet = ExtResource("3_4fye7")
 force = 100.0
+collision_layer = 2
+collision_mask = 2
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("4_4lx14")
 
-[connection signal="body_entered" from="." to="Health" method="_on_body_entered"]
 [connection signal="on_action" from="." to="Gun" method="_on_action"]
+[connection signal="on_damage" from="." to="Health" method="damage"]
