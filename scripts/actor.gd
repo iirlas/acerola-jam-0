@@ -2,11 +2,8 @@ class_name Actor
 extends CharacterBody2D
 
 
-@export var speed := 1.0
 @export_flags("X", "Y") var axis_lock := 0
 var colliders: Dictionary # (collider: should delete next check)
-signal on_action
-signal on_damage(amount:int)
 signal body_entered(body: Node)
 signal body_exited(body: Node)
 

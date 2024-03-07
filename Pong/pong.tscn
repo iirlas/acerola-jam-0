@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://c24mbbj6d6v62"]
+
+[ext_resource type="PackedScene" uid="uid://chedfyj82awj6" path="res://Pong/ball.tscn" id="1_510t0"]
+[ext_resource type="Script" path="res://Pong/player.gd" id="2_8kqon"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_g8d18"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m47hj"]
+size = Vector2(384, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_loc31"]
+size = Vector2(8, 64)
+
+[node name="Pong" type="Node2D"]
+
+[node name="Ball" parent="." instance=ExtResource("1_510t0")]
+position = Vector2(192, 108)
+physics_material_override = SubResource("PhysicsMaterial_g8d18")
+gravity_scale = 0.0
+
+[node name="Wall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(192, 4)
+shape = SubResource("RectangleShape2D_m47hj")
+
+[node name="Wall2" type="StaticBody2D" parent="."]
+position = Vector2(0, 208)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+position = Vector2(192, 4)
+shape = SubResource("RectangleShape2D_m47hj")
+
+[node name="Paddle" type="CharacterBody2D" parent="."]
+position = Vector2(16, 108)
+motion_mode = 1
+script = ExtResource("2_8kqon")
+speed = 50.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle"]
+shape = SubResource("RectangleShape2D_loc31")
+
+[node name="Paddle2" type="CharacterBody2D" parent="."]
+position = Vector2(372, 108)
+motion_mode = 1
+script = ExtResource("2_8kqon")
+speed = 50.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle2"]
+shape = SubResource("RectangleShape2D_loc31")

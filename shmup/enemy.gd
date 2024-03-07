@@ -1,1 +1,1 @@
-extends Actor
+extends Ship
