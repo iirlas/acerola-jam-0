@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://cr2j76p1cx5ha"]
+
+[ext_resource type="Script" path="res://scene_manager/scene_manager.gd" id="1_hxam3"]
+[ext_resource type="PackedScene" uid="uid://mnt4k7yyxmbm" path="res://title_screen/title_screen.tscn" id="2_myo37"]
+[ext_resource type="PackedScene" uid="uid://c24mbbj6d6v62" path="res://pong/pong.tscn" id="3_qhegf"]
+
+[node name="SceneManager" type="Node"]
+script = ExtResource("1_hxam3")
+scenes = [ExtResource("2_myo37"), ExtResource("3_qhegf")]
