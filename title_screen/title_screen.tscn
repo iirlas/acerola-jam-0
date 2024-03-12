@@ -66,21 +66,24 @@ text = "Placeholder"
 layout_mode = 2
 text = "Placeholder"
 
-[node name="TextureButtonLeft" type="TextureButton" parent="LevelSelect"]
-layout_mode = 0
-offset_top = 160.0
-offset_right = 96.0
-offset_bottom = 189.0
-texture_normal = SubResource("NoiseTexture2D_yqjr5")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="TextureButtonRight" type="TextureButton" parent="LevelSelect"]
+[node name="ButtonNextPage" type="TextureButton" parent="LevelSelect"]
 layout_mode = 0
 offset_left = 288.0
 offset_top = 160.0
 offset_right = 384.0
 offset_bottom = 189.0
+texture_normal = SubResource("NoiseTexture2D_yqjr5")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ButtonPrevPage" type="TextureButton" parent="LevelSelect"]
+layout_mode = 0
+offset_top = 160.0
+offset_right = 96.0
+offset_bottom = 189.0
 texture_normal = SubResource("NoiseTexture2D_fkty0")
 ignore_texture_size = true
 stretch_mode = 0
+
+[connection signal="pressed" from="LevelSelect/ButtonNextPage" to="LevelSelect" method="_on_button_next_page_pressed"]
+[connection signal="pressed" from="LevelSelect/ButtonPrevPage" to="LevelSelect" method="_on_button_prev_page_pressed"]
