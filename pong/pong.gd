@@ -1,7 +1,6 @@
 extends Level
 
 
-@export var ball_speed := 1.0
 var player_1_score := 0
 var player_2_score := 0
 
@@ -16,8 +15,13 @@ func _ready():
 	PhysicsServer2D.body_set_state(
 		$Ball.get_rid(),
 		PhysicsServer2D.BODY_STATE_LINEAR_VELOCITY,
-		Vector2.RIGHT.rotated(angle) * ball_speed
+		Vector2.RIGHT.rotated(angle)
 	)
+
+
+func _process(delta):
+	$UI/Label.text = str(player_1_score)
+	$UI/Label2.text = str(player_2_score)
 
 
 func _on_goal_body_entered(body):
@@ -29,8 +33,3 @@ func _on_goal_body_entered(body):
 func _on_goal_2_body_entered(body):
 	player_1_score += 1
 	_ready()
-
-
-func _process(delta):
-	$UI/Label.text = str(player_1_score)
-	$UI/Label2.text = str(player_2_score)
