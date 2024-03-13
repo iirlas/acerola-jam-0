@@ -6,4 +6,5 @@ extends RigidBody2D
 
 func _on_body_entered(body: Node):
 	$Health.damage(damage)
-	body.emit_signal("on_damage", damage)
+	if body.has_signal("damaged"):
+		body.emit_signal("damaged", damage)

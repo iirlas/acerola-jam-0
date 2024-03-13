@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cmdtn7qscq5yt"]
 
-[ext_resource type="Script" path="res://shmup/health.gd" id="1_c4fvb"]
 [ext_resource type="Script" path="res://shmup/bullet.gd" id="1_hjrv0"]
+[ext_resource type="Script" path="res://scripts/health.gd" id="2_53uqp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dmphq"]
 radius = 4.0
@@ -22,6 +22,7 @@ gravity_scale = 0.0
 can_sleep = false
 max_contacts_reported = 5
 contact_monitor = true
+linear_damp_mode = 1
 script = ExtResource("1_hjrv0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -31,6 +32,6 @@ shape = SubResource("CircleShape2D_dmphq")
 texture = SubResource("GradientTexture2D_xypap")
 
 [node name="Health" type="Node" parent="."]
-script = ExtResource("1_c4fvb")
+script = ExtResource("2_53uqp")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

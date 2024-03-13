@@ -1,48 +1,46 @@
-[gd_scene load_steps=8 format=3 uid="uid://dshdj4eghpkih"]
+[gd_scene load_steps=7 format=3 uid="uid://dshdj4eghpkih"]
 
 [ext_resource type="Script" path="res://shmup/enemy.gd" id="1_nbcuy"]
+[ext_resource type="Texture2D" uid="uid://clbv8alu4rdrm" path="res://shmup/ship.png" id="2_fpvcu"]
 [ext_resource type="Script" path="res://shmup/gun.gd" id="2_t84n0"]
 [ext_resource type="PackedScene" uid="uid://cmdtn7qscq5yt" path="res://shmup/bullet.tscn" id="3_w83bg"]
-[ext_resource type="Script" path="res://shmup/health.gd" id="4_v77x6"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_cb73h"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a8fkt"]
-width = 8
-height = 8
-noise = SubResource("FastNoiseLite_cb73h")
+[ext_resource type="Script" path="res://scripts/health.gd" id="4_ti3bq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rk5jt"]
-size = Vector2(8, 8)
+size = Vector2(6, 6)
 
 [node name="Enemy" type="CharacterBody2D"]
+process_mode = 4
+disable_mode = 2
 collision_layer = 2
-collision_mask = 2
 motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_nbcuy")
-speed = 100.0
+speed = 50.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("NoiseTexture2D_a8fkt")
+texture = ExtResource("2_fpvcu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_rk5jt")
 
 [node name="Gun" type="Node2D" parent="."]
-rotation = 3.14159
 script = ExtResource("2_t84n0")
 bullet = ExtResource("3_w83bg")
 force = 100.0
-collision_layer = 1
+collision_layer = 2
 collision_mask = 1
 
 [node name="Health" type="Node" parent="."]
-script = ExtResource("4_v77x6")
+script = ExtResource("4_ti3bq")
 
 [node name="GunTimer" type="Timer" parent="."]
 autostart = true
 
-[connection signal="on_action" from="." to="Gun" method="_on_action"]
-[connection signal="on_damage" from="." to="Health" method="damage"]
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 0)
+collision_mask = 3
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="damaged" from="." to="Health" method="damage"]
 [connection signal="timeout" from="GunTimer" to="Gun" method="_on_action"]
