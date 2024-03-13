@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://w75uq3kc8yak"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_imbhw"]
+font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_1c5ej"]
+font_size = 8
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_oyf4b"]
+font_size = 8
+font_color = Color(1, 0, 0, 1)
+
+[node name="Rhythm" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.25
+text = "Error"
+label_settings = SubResource("LabelSettings_imbhw")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Message" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.25
+anchor_right = 1.0
+anchor_bottom = 0.375
+text = "Exception Occurred at 0xCODEFa11
+Could Not Load Level: 'rhythm'"
+label_settings = SubResource("LabelSettings_1c5ej")
+horizontal_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="StackTrace" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.125
+anchor_top = 0.375
+anchor_right = 0.875
+anchor_bottom = 1.0
+offset_right = -3.05176e-05
+text = "Stack Trace:
+#0 _ZN11LevelLoader9LoadLevelERKSs  (LevelLoader.cxx:42)
+#1 _ZN15ResourceManager13LoadResourceERKSs (ResourceManager.cxx:78)
+#2 _ZN10FileSystem8ReadFileERKSs (FileSystem.cxx:123)
+#3 _ZN10FileSystem8OpenFileERKSs9FileMode (FileSystem.cxx:234)"
+label_settings = SubResource("LabelSettings_oyf4b")
+autowrap_mode = 3
+uppercase = true
