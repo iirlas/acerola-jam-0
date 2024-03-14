@@ -1,13 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://c24mbbj6d6v62"]
+[gd_scene load_steps=12 format=3 uid="uid://c24mbbj6d6v62"]
 
 [ext_resource type="PackedScene" uid="uid://chedfyj82awj6" path="res://pong/ball.tscn" id="1_510t0"]
 [ext_resource type="Script" path="res://pong/pong.gd" id="1_ln6e0"]
 [ext_resource type="Script" path="res://pong/player.gd" id="2_8kqon"]
 [ext_resource type="Script" path="res://pong/ball.gd" id="3_gxvj1"]
+[ext_resource type="Texture2D" uid="uid://bcqs4mrkgeqiq" path="res://textures/pallette.png" id="4_ymn27"]
+[ext_resource type="Script" path="res://pong/opponent.gd" id="6_w8i4s"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_g8d18"]
 friction = 0.0
 bounce = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_px7d1"]
+atlas = ExtResource("4_ymn27")
+region = Rect2(0, 24, 7, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m47hj"]
 size = Vector2(384, 8)
@@ -31,11 +37,21 @@ linear_damp_mode = 1
 script = ExtResource("3_gxvj1")
 speed = 100.0
 
+[node name="Sprite2D2" type="Sprite2D" parent="Ball"]
+position = Vector2(4.52995e-06, 1.90735e-06)
+scale = Vector2(2.28571, 2)
+texture = SubResource("AtlasTexture_px7d1")
+
 [node name="Wall" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
 position = Vector2(192, 4)
 shape = SubResource("RectangleShape2D_m47hj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall"]
+position = Vector2(192, 4)
+scale = Vector2(54.8571, 1)
+texture = SubResource("AtlasTexture_px7d1")
 
 [node name="Wall2" type="StaticBody2D" parent="."]
 position = Vector2(0, 208)
@@ -43,6 +59,11 @@ position = Vector2(0, 208)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
 position = Vector2(192, 4)
 shape = SubResource("RectangleShape2D_m47hj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall2"]
+position = Vector2(192, 4)
+scale = Vector2(54.8571, 1)
+texture = SubResource("AtlasTexture_px7d1")
 
 [node name="Paddle" type="CharacterBody2D" parent="."]
 position = Vector2(28, 108)
@@ -53,14 +74,25 @@ speed = 50.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle"]
 shape = SubResource("RectangleShape2D_loc31")
 
-[node name="Paddle2" type="CharacterBody2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="Paddle"]
+position = Vector2(2.38419e-07, 0)
+scale = Vector2(1.14286, 8)
+texture = SubResource("AtlasTexture_px7d1")
+
+[node name="Paddle2" type="CharacterBody2D" parent="." node_paths=PackedStringArray("target")]
 position = Vector2(356, 108)
 motion_mode = 1
-script = ExtResource("2_8kqon")
+script = ExtResource("6_w8i4s")
+target = NodePath("../Ball")
 speed = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle2"]
 shape = SubResource("RectangleShape2D_loc31")
+
+[node name="Sprite2D" type="Sprite2D" parent="Paddle2"]
+position = Vector2(2.38419e-07, 0)
+scale = Vector2(1.14286, 8)
+texture = SubResource("AtlasTexture_px7d1")
 
 [node name="Goal" type="Area2D" parent="."]
 position = Vector2(0, 108)
