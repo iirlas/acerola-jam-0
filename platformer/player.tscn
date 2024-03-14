@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://d2myeqoxu48aa"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_rii3i"]
+[ext_resource type="Texture2D" uid="uid://8go18diyv0ak" path="res://platformer/character.png" id="2_wuase"]
+[ext_resource type="Script" path="res://shmup/gun.gd" id="3_lnrei"]
+[ext_resource type="PackedScene" uid="uid://cmdtn7qscq5yt" path="res://shmup/bullet.tscn" id="4_cpfdb"]
+[ext_resource type="Script" path="res://scripts/health.gd" id="5_ko2cv"]
+[ext_resource type="Script" path="res://platformer/jump.gd" id="6_ug3cc"]
+[ext_resource type="Script" path="res://platformer/move.gd" id="7_ddxn1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rk5jt"]
+size = Vector2(6, 7)
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(68, 100)
+collision_mask = 2
+script = ExtResource("1_rii3i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_wuase")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_rk5jt")
+
+[node name="Gun" type="Node2D" parent="."]
+script = ExtResource("3_lnrei")
+bullet = ExtResource("4_cpfdb")
+force = 100.0
+limit = 2
+collision_mask = 2
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("5_ko2cv")
+
+[node name="Jump" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("6_ug3cc")
+actor = NodePath("..")
+height_max = 5.0
+height_min = 2.0
+fall_speed = 3.0
+
+[node name="Timer" type="Timer" parent="Jump"]
+wait_time = 0.3
+one_shot = true
+
+[node name="Move" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("7_ddxn1")
+actor = NodePath("..")
+
+[connection signal="action_0" from="." to="Gun" method="_on_action"]
+[connection signal="action_1" from="." to="Jump" method="_on_jump"]
+[connection signal="damaged" from="." to="Health" method="damage"]

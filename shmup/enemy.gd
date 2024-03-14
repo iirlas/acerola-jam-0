@@ -19,5 +19,7 @@ func _physics_process(delta):
 	
 
 
-func _on_body_entered(body):
+func _on_body_entered(body: Node):
+	if body.has_signal('damaged'):
+		body.emit_signal('damaged', 1)
 	damaged.emit(1)

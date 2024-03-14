@@ -1,7 +1,8 @@
+class_name BasePlayer
 extends Actor
 
 
-@export var speed := Vector2.ONE
+var direction := Vector2.ZERO
 signal action_0
 signal action_1
 
@@ -14,10 +15,7 @@ func _unhandled_input(event):
 
 
 func _process(delta):
-	velocity.x = Input.get_axis("ui_left", "ui_right") * speed.x
-	velocity.y = Input.get_axis("ui_up", "ui_down") * speed.y
-
-
-
-func _on_body_entered(body):
-	damaged.emit(1)
+	direction = Vector2(
+		Input.get_axis("ui_left", "ui_right"),
+		Input.get_axis("ui_up", "ui_down")
+	)
