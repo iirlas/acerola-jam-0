@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://scripts/health.gd" id="7_2yiiu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7wd40"]
-size = Vector2(192, 108)
+size = Vector2(192, 324)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3bbj4"]
 size = Vector2(1386, 20)
@@ -26,7 +26,7 @@ zoom = Vector2(2, 2)
 limit_left = 0
 limit_top = 0
 limit_right = 1200
-limit_bottom = 184
+limit_bottom = 150
 
 [node name="Area2D" type="Area2D" parent="Camera2D"]
 collision_layer = 0
@@ -58,6 +58,48 @@ remote_path = NodePath("../../Camera2D")
 
 [node name="Enemy" parent="Enemies" node_paths=PackedStringArray("target") instance=ExtResource("5_ipygr")]
 position = Vector2(92, 116)
+rotation = -3.14159
+target = NodePath("../../Player")
+axis_lock = 3
+
+[node name="Enemy2" parent="Enemies" node_paths=PackedStringArray("target") instance=ExtResource("5_ipygr")]
+position = Vector2(356, 116)
+rotation = -3.14159
+target = NodePath("../../Player")
+axis_lock = 3
+
+[node name="Enemy3" parent="Enemies" node_paths=PackedStringArray("target") instance=ExtResource("5_ipygr")]
+position = Vector2(381, 49)
+rotation = -4.71238
+target = NodePath("../../Player")
+axis_lock = 2
+
+[node name="Enemy4" parent="Enemies" node_paths=PackedStringArray("target") instance=ExtResource("5_ipygr")]
+position = Vector2(956, 108)
+rotation = -3.14159
+target = NodePath("../../Player")
+axis_lock = 3
+
+[node name="Enemy5" parent="Enemies" node_paths=PackedStringArray("target") instance=ExtResource("5_ipygr")]
+position = Vector2(1020, 92)
+rotation = -3.14159
+target = NodePath("../../Player")
+axis_lock = 3
+
+[node name="Enemy6" parent="Enemies" node_paths=PackedStringArray("target") instance=ExtResource("5_ipygr")]
+position = Vector2(1084, 76)
+rotation = -3.14159
+target = NodePath("../../Player")
+axis_lock = 3
+
+[node name="Enemy7" parent="Enemies" node_paths=PackedStringArray("target") instance=ExtResource("5_ipygr")]
+position = Vector2(220, 116)
+rotation = -1.57079
+target = NodePath("../../Player")
+axis_lock = 3
+
+[node name="Enemy8" parent="Enemies" node_paths=PackedStringArray("target") instance=ExtResource("5_ipygr")]
+position = Vector2(732, 108)
 rotation = -3.14159
 target = NodePath("../../Player")
 axis_lock = 3

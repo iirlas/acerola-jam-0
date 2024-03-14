@@ -6,7 +6,8 @@ extends Node
 
 
 func _ready():
-	LevelManager.lives = lives
+	if LevelManager.lives <= 0:
+		LevelManager.lives = lives
 
 
 func _on_win():
@@ -16,6 +17,5 @@ func _on_win():
 
 func _on_loss():
 	LevelManager.lives -= 1
-	if LevelManager.lives <= 0:
-		SceneManager.goto_child(1)
+	SceneManager.goto_child(1)
 	pass

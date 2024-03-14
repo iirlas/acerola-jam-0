@@ -16,8 +16,13 @@ script = ExtResource("2_74nh0")
 scene = ExtResource("2_myo37")
 
 [node name="Options" type="Node" parent="TitleScreen"]
+script = ExtResource("2_74nh0")
 
 [node name="Credits" type="Node" parent="TitleScreen"]
+script = ExtResource("2_74nh0")
+
+[node name="Help" type="Node" parent="TitleScreen"]
+script = ExtResource("2_74nh0")
 
 [node name="LevelTitleScreen" type="Node" parent="TitleScreen"]
 script = ExtResource("2_74nh0")

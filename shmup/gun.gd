@@ -19,6 +19,7 @@ func _on_action():
 	var instance := bullet.instantiate() as RigidBody2D
 	bullets.add_child(instance)
 	instance.global_position = global_position
+	instance.global_rotation = global_rotation
 	instance.collision_layer = collision_layer
 	instance.collision_mask = collision_mask
 	instance.apply_impulse(global_transform.x * force)

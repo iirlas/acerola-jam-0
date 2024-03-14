@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://2utou20l2uuj"]
+[gd_scene load_steps=3 format=3 uid="uid://2utou20l2uuj"]
 
+[ext_resource type="Script" path="res://title_screen/level_title_screen.gd" id="1_31p2x"]
 [ext_resource type="Script" path="res://title_screen/transition_timer.gd" id="1_t5fnr"]
 
 [node name="LevelTitleScreen" type="Control"]
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_31p2x")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -18,7 +20,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="Panel"]
+[node name="Title" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.25
@@ -26,6 +28,17 @@ anchor_top = 0.125
 anchor_right = 0.75
 anchor_bottom = 0.375
 text = "Level Title"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Lives" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.375
+anchor_right = 0.75
+anchor_bottom = 0.625
+offset_right = -3.05176e-05
 horizontal_alignment = 1
 vertical_alignment = 1
 
