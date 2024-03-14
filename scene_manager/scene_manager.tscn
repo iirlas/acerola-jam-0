@@ -1,11 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://cr2j76p1cx5ha"]
+[gd_scene load_steps=11 format=3 uid="uid://cr2j76p1cx5ha"]
 
 [ext_resource type="Script" path="res://scene_manager/scene_manager.gd" id="1_hxam3"]
 [ext_resource type="Script" path="res://scene_manager/scene_loader.gd" id="2_74nh0"]
 [ext_resource type="PackedScene" uid="uid://mnt4k7yyxmbm" path="res://title_screen/title_screen.tscn" id="2_myo37"]
 [ext_resource type="PackedScene" uid="uid://2utou20l2uuj" path="res://title_screen/level_title_screen.tscn" id="4_g68jm"]
+[ext_resource type="PackedScene" uid="uid://csqp8gnwx0gah" path="res://title_screen/help_screen.tscn" id="4_hvkrs"]
+[ext_resource type="PackedScene" uid="uid://i17x6yqeyodl" path="res://title_screen/option_screen.tscn" id="4_ytf04"]
 [ext_resource type="PackedScene" uid="uid://cigcjrpva1ogs" path="res://title_screen/win_screen.tscn" id="5_ub7q1"]
 [ext_resource type="PackedScene" uid="uid://2diyo25mqp05" path="res://title_screen/loss_screen.tscn" id="6_4lxyj"]
+[ext_resource type="PackedScene" uid="uid://dwnksxw2vt8ik" path="res://title_screen/credits_screen.tscn" id="6_7dg57"]
 [ext_resource type="Script" path="res://scene_manager/scene_manager_jump.gd" id="6_ha0bp"]
 
 [node name="SceneManager" type="Node"]
@@ -15,14 +18,17 @@ script = ExtResource("1_hxam3")
 script = ExtResource("2_74nh0")
 scene = ExtResource("2_myo37")
 
+[node name="Help" type="Node" parent="TitleScreen"]
+script = ExtResource("2_74nh0")
+scene = ExtResource("4_hvkrs")
+
 [node name="Options" type="Node" parent="TitleScreen"]
 script = ExtResource("2_74nh0")
+scene = ExtResource("4_ytf04")
 
 [node name="Credits" type="Node" parent="TitleScreen"]
 script = ExtResource("2_74nh0")
-
-[node name="Help" type="Node" parent="TitleScreen"]
-script = ExtResource("2_74nh0")
+scene = ExtResource("6_7dg57")
 
 [node name="LevelTitleScreen" type="Node" parent="TitleScreen"]
 script = ExtResource("2_74nh0")

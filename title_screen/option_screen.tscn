@@ -1,4 +1,31 @@
-[gd_scene format=3 uid="uid://i17x6yqeyodl"]
+[gd_scene load_steps=4 format=3 uid="uid://i17x6yqeyodl"]
+
+[ext_resource type="Texture2D" uid="uid://cpvt7ni244knq" path="res://title.png" id="1_6xfk3"]
+
+[sub_resource type="GDScript" id="GDScript_06jsq"]
+resource_name = "BackButton"
+script/source = "extends Button
+
+
+func _on_pressed():
+	SceneManager.goto_root()
+"
+
+[sub_resource type="GDScript" id="GDScript_e608x"]
+resource_name = "FullscreenButton"
+script/source = "extends CheckButton
+
+
+func _ready():
+	set_pressed_no_signal(DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN)
+
+
+func _on_toggled(toggled_on):
+	if toggled_on:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+"
 
 [node name="OptionScreen" type="Control"]
 layout_mode = 3
@@ -8,10 +35,68 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GridContainer" type="VBoxContainer" parent="."]
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.236
+offset_bottom = 0.0239983
+texture = ExtResource("1_6xfk3")
+expand_mode = 1
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.883
+anchor_top = 0.852
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.0720215
+offset_top = -0.0320129
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back"
+script = SubResource("GDScript_06jsq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.25
 anchor_top = 0.25
 anchor_right = 0.75
 anchor_bottom = 0.75
+
+[node name="Volume" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Volume"]
+layout_mode = 2
+text = "Volume"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 50.0
+
+[node name="FullScreen" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/FullScreen"]
+layout_mode = 2
+text = "Fullscreen"
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/FullScreen"]
+layout_mode = 2
+script = SubResource("GDScript_e608x")
+
+[connection signal="pressed" from="BackButton" to="BackButton" method="_on_pressed"]
+[connection signal="toggled" from="VBoxContainer/FullScreen/CheckButton" to="VBoxContainer/FullScreen/CheckButton" method="_on_toggled"]

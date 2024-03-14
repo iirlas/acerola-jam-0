@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://mnt4k7yyxmbm"]
+[gd_scene load_steps=9 format=3 uid="uid://mnt4k7yyxmbm"]
 
 [ext_resource type="Texture2D" uid="uid://cpvt7ni244knq" path="res://title.png" id="1_ariwo"]
 [ext_resource type="Script" path="res://title_screen/level_select.gd" id="1_u3rku"]
+[ext_resource type="Script" path="res://title_screen/title_screen.gd" id="1_v8gs6"]
 [ext_resource type="PackedScene" uid="uid://dwcimwhyjcdc1" path="res://platformer/platformer.tscn" id="3_437gj"]
 [ext_resource type="PackedScene" uid="uid://dshewc6y1bq54" path="res://shmup/shmup.tscn" id="3_qfqf7"]
 [ext_resource type="PackedScene" uid="uid://c24mbbj6d6v62" path="res://pong/pong.tscn" id="4_8sv4h"]
@@ -15,6 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_v8gs6")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -24,7 +26,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Title" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -94,5 +96,47 @@ ignore_texture_size = true
 stretch_mode = 0
 flip_h = true
 
+[node name="Help" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.039
+anchor_top = 0.196
+anchor_right = 0.195
+anchor_bottom = 0.36
+offset_left = 0.0240002
+offset_top = 21.664
+offset_right = 0.119995
+offset_bottom = 21.668
+text = "Help"
+
+[node name="Options" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.039
+anchor_top = 0.381
+anchor_right = 0.221
+anchor_bottom = 0.545
+offset_left = 0.0240002
+offset_top = 16.704
+offset_right = 0.135994
+offset_bottom = 16.708
+text = "Options"
+
+[node name="Credits" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.039
+anchor_top = 0.582
+anchor_right = 0.221
+anchor_bottom = 0.746
+offset_left = 0.0240002
+offset_top = 11.288
+offset_right = 0.135994
+offset_bottom = 11.292
+text = "Credits"
+
 [connection signal="pressed" from="LevelSelect/ButtonNextPage" to="LevelSelect" method="_on_button_next_page_pressed"]
 [connection signal="pressed" from="LevelSelect/ButtonPrevPage" to="LevelSelect" method="_on_button_prev_page_pressed"]
+[connection signal="pressed" from="Help" to="." method="_on_help_pressed"]
+[connection signal="pressed" from="Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Credits" to="." method="_on_credits_pressed"]

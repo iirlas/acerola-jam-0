@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://csqp8gnwx0gah"]
+
+[ext_resource type="Texture2D" uid="uid://cpvt7ni244knq" path="res://title.png" id="1_2yur5"]
+
+[sub_resource type="GDScript" id="GDScript_06jsq"]
+resource_name = "BackButton"
+script/source = "extends Button
+
+
+func _on_pressed():
+	SceneManager.goto_root()
+"
+
+[node name="OptionScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.236
+offset_bottom = 0.0239983
+texture = ExtResource("1_2yur5")
+expand_mode = 1
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.883
+anchor_top = 0.852
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.0720215
+offset_top = -0.0320129
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back"
+script = SubResource("GDScript_06jsq")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.154
+anchor_top = 0.236
+anchor_right = 0.836
+anchor_bottom = 0.824
+offset_left = -0.136005
+offset_top = 0.0239983
+offset_right = 2.97598
+offset_bottom = 0.0159912
+text = "Controls:
+
+Arrow keys - Up/Down/Left/Right
+Z - Shoot
+X - Jump"
+
+[connection signal="pressed" from="BackButton" to="BackButton" method="_on_pressed"]
