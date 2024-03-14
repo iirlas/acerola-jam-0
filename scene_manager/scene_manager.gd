@@ -17,12 +17,12 @@ func goto_root():
 
 
 func goto_child(index: int):
-	if index < current.get_child_count():
+	if current != null and index < current.get_child_count():
 		current = current.get_child(index)
 
 
 func goto_parent():
-	if get_parent() != null:
+	if current != null and current.get_parent() != null:
 		current = current.get_parent()
 
 
