@@ -26,10 +26,14 @@ func _process(delta):
 
 func _on_goal_body_entered(body):
 	player_2_score += 1
+	if player_2_score >= 10:
+		_on_loss()
 	_ready()
 
 
 
 func _on_goal_2_body_entered(body):
 	player_1_score += 1
+	if player_1_score >= 10:
+		_on_loss()
 	_ready()
